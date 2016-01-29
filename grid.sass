@@ -1,0 +1,118 @@
+.bs-debug-grid-on.bs-debug-grid-highlight
+    .container, .container-fluid
+        outline: 1px solid green
+        outline-offset: 0
+    .row
+        outline: 1px solid red
+        outline-offset: -3px
+    *[class^='col-']
+        outline: 1px solid blue
+        outline-offset: -6px
+
+#bs-debug-grid
+    display: none
+
+.bs-debug-grid-on #bs-debug-grid
+    display: block
+
+#bs-debug-grid-grid
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 10000
+    pointer-events: none
+    font-size: 9px
+    *
+        outline: none !important
+    .col-xs-1
+        height: 5000px
+        opacity: 0.3
+        border-left: 1px dotted magenta
+        &:last-child
+            border-right: 1px dotted magenta
+        div
+            height: 100%
+            padding-top: 6px
+            text-align: center
+            color: #000
+            background: #ccc
+
+#bs-debug-grid-nav
+    z-index: 10002
+    cursor: pointer
+    position: fixed
+    top: 0
+    right: 0
+    p
+        padding: 5px
+        font-size: 16px
+        color: white
+        background: #999
+        height: 30px
+        &:after
+            padding-left: 5px
+            content: "\2261"
+        b
+            font-weight: normal
+
+    div
+        display: none
+        position: absolute
+        top: 30px
+        right: 0
+        background: #333
+        a
+            display: block
+            color: white
+            padding: 8px 20px 8px 30px
+            position: relative
+            &:hover
+                background: #000
+            &.bs-debug-grid-active:before
+                content: "\2713"
+                position: absolute
+                left: 8px
+                top: 8px
+
+    &.bs-debug-grid-active
+        p
+            background: #333
+            &:after
+                content: "\00D7"
+        div
+            display: block
+
+
+
+#bs-debug-grid-ruler
+    display: none
+    position: fixed
+    left: 0
+    top: 0
+    width: 200px
+    height: 200px
+    z-index: 10001
+    background-image: url('@./build/ruler.svg')
+    cursor: move
+    opacity: 0.8
+
+    i
+        position: absolute
+        right: 0
+        bottom: 0
+        width: 16px
+        height: 16px
+        border: 5px solid #aaa
+        background: #eee
+        cursor: nwse-resize
+
+    div
+        position: absolute
+        top: 0
+        left: 0
+        color: white
+        background: #000
+        font-size: 10px
+        padding: 3px
