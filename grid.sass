@@ -24,15 +24,29 @@
     z-index: 10000
     pointer-events: none
     font-size: 9px
+
     *
         outline: none !important
+
     .col-xs-1
         height: 5000px
-        opacity: 0.3
-        border-left: 1px dotted magenta
-        &:last-child
-            border-right: 1px dotted magenta
+        position: relative
+
+        b, i
+            display: block
+            position: absolute
+            top: 0
+            width: 1px
+            height: 100%
+            background: url('data:image/gif;base64,R0lGODlhAQACAIAAAP///8xqpCH5BAAAAAAALAAAAAABAAIAAAICDAoAOw==')
+
+        b
+            left: 0
+        i
+            right: 0
+
         div
+            opacity: 0.3
             height: 100%
             padding-top: 6px
             text-align: center
@@ -46,7 +60,7 @@
     top: 0
     right: 0
     p
-        padding: 5px
+        padding: 5px 10px
         font-size: 16px
         color: white
         background: #999

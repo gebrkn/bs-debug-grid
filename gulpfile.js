@@ -25,7 +25,8 @@ function doIncludes(src) {
         return JSON.stringify(
             fs.readFileSync(path, 'utf8')
                 .replace(/ *\n+ */g, '')
-                .replace(/"/g, "'")
+                .replace(/"/g, '\'')
+                .replace(/;\s*}/g, '}')
                 .replace(/: +/g, ':'));
     });
 }
@@ -40,7 +41,6 @@ gulp.task('ruler', function() {
         .pipe(gulp.dest('./build'))
         ;
 });
-
 
 gulp.task('sass', ['ruler'], function () {
     return gulp.src('*.sass')
@@ -74,7 +74,5 @@ gulp.task('index', ['js'], function () {
         .pipe(gulp.dest('.'))
         ;
 });
-
-// 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMHB4IiBoZWlnaHQ9IjEwcHgiIHZpZXdCb3g9IjAgMCAxMCAxMCIgdmVyc2lvbj0iMS4xIj48cG9seWxpbmUgcG9pbnRzPSIwLDEwIDAsMCAxMCwwIiBzdHJva2U9IiNhYWFhYWEiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9ImJ1dHQiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiLz48L3N2Zz4='
 
 gulp.task('default', ['index']);

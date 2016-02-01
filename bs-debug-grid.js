@@ -34,10 +34,8 @@
             if (w !== lastWidth) {
                 lastWidth = w;
                 $g.find('.col-xs-1').each(function () {
-                    var t = this;
-                    $(t).find('div').text(
-                        t.offsetWidth + '/' + t.firstChild.offsetWidth
-                    );
+                    var t = this, $d = $(t).find('div');
+                    $d.text(t.offsetWidth + '/' + $d[0].offsetWidth);
                 });
             }
         }
@@ -47,7 +45,7 @@
                 t = $r[0].offsetTop,
                 w = $r[0].offsetWidth,
                 h = $r[0].offsetHeight,
-                r = $g ? $g[0].offsetLeft : 0;
+                r = $g ? $g.find('.col-xs-1:first').offset().left : 0;
             $r.find('div').html(
                 'x=' + l + '(' + (l - r) + ')&nbsp;y=' + t + '&nbsp;' + w + '&times;' + h
             )
@@ -89,12 +87,15 @@
         };
 
         $$('grid').find('.col-xs-1').each(function () {
-            var $t = $(this), x = $t.offset().left, d = $t[0].firstChild;
-            snap.points.push(x,
-                x + d.offsetLeft,
-                x + d.offsetLeft + d.offsetWidth,
-                x + $t[0].offsetWidth);
+            var $t = $(this), x = $t.offset().left, d = $t.find('div')[0]
+            snap.points.push(
+                Math.ceil(x),
+                Math.ceil(x + d.offsetLeft),
+                Math.ceil(x + d.offsetLeft + d.offsetWidth),
+                Math.ceil(x + $t[0].offsetWidth));
         });
+
+        console.log(snap.points)
 
         var $t = $(this),
             start = eventXY(e),
