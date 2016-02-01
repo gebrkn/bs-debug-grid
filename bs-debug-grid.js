@@ -95,8 +95,6 @@
                 Math.ceil(x + $t[0].offsetWidth));
         });
 
-        console.log(snap.points)
-
         var $t = $(this),
             start = eventXY(e),
             anchor = {x: $t[0].offsetLeft, y: $t[0].offsetTop},
